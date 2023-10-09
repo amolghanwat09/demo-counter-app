@@ -57,19 +57,21 @@ pipeline{
                    }
                     
                 }
-            }
-           stage('Quality Gate Status'){
+            
+             stage('Quality Gate Status'){
                 
                 steps{
                     
                     script{
                         
                         waitForQualityGate abortPipeline: false, credentialsId: 'sonar-api'
-                    }
+                   }
                 }
-            }
-
+           }
+           
             stage('Upload was file to nexus'){
+
+                steps{
 
                 nexusArtifactUploader artifacts: 
                 [
@@ -81,12 +83,14 @@ pipeline{
                     ], 
                     credentialsId: 'nexus-auth', 
                     groupId: 'com.example', 
-                    nexusUrl: 'http://18.117.240.1:8081', 
+                    nexusUrl: '18.117.240.1:8081', 
                     nexusVersion: 'nexus3', 
                     protocol: 'http', 
                     repository: 'demoapp-release', 
                     version: '1.0.0'
             }
+            }
+        }
         }
         
 }

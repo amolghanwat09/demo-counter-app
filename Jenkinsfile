@@ -57,7 +57,7 @@ pipeline{
                    }
                     
                 }
-<<<<<<< HEAD
+
             
              stage('Quality Gate Status'){
                 
@@ -70,13 +70,18 @@ pipeline{
                 }
            }
            
-=======
+
         }
           
->>>>>>> 0cfd195228536a9e5b777faaf61cd54629d098cd
-            stage('Upload was file to nexus'){
+           
+
+            stage('Upload war file to nexus'){
 
                 steps{
+
+                    script{
+                        def readPomVersion = readMavenPom file: 'pom.xml'
+                    
 
                 nexusArtifactUploader artifacts: 
                 [
@@ -92,13 +97,15 @@ pipeline{
                     nexusVersion: 'nexus3', 
                     protocol: 'http', 
                     repository: 'demoapp-release', 
-                    version: '1.0.0'
+                    version: "${readPomVersion}"
+                    }
             }
             }
-<<<<<<< HEAD
+
         }
-=======
->>>>>>> 0cfd195228536a9e5b777faaf61cd54629d098cd
+
+
         }
         
-}
+        
+

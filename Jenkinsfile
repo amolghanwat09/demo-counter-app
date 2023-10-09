@@ -57,10 +57,11 @@ pipeline{
                    }
                     
                 }
-            }
+        }
           
-
             stage('Upload was file to nexus'){
+
+                steps{
 
                 nexusArtifactUploader artifacts: 
                 [
@@ -77,6 +78,7 @@ pipeline{
                     protocol: 'http', 
                     repository: 'demoapp-release', 
                     version: '1.0.0'
+            }
             }
         }
         

@@ -57,6 +57,7 @@ pipeline{
                    }
                     
                 }
+        }
 
             
              stage('Quality Gate Status'){

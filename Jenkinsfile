@@ -57,6 +57,7 @@ pipeline{
                    }
                     
                 }
+<<<<<<< HEAD
             
              stage('Quality Gate Status'){
                 
@@ -69,6 +70,10 @@ pipeline{
                 }
            }
            
+=======
+        }
+          
+>>>>>>> 0cfd195228536a9e5b777faaf61cd54629d098cd
             stage('Upload was file to nexus'){
 
                 steps{
@@ -90,7 +95,10 @@ pipeline{
                     version: '1.0.0'
             }
             }
+<<<<<<< HEAD
         }
+=======
+>>>>>>> 0cfd195228536a9e5b777faaf61cd54629d098cd
         }
         
 }

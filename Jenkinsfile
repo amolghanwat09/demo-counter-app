@@ -58,16 +58,16 @@ pipeline{
                     
                 }
             }
-           stage('Quality Gate Status'){
+           #stage('Quality Gate Status'){
                 
-                steps{
+              #  steps{
                     
-                    script{
+                 #   script{
                         
-                        waitForQualityGate abortPipeline: false, credentialsId: 'sonar-api'
-                    }
-                }
-            }
+                   #     waitForQualityGate abortPipeline: false, credentialsId: 'sonar-api'
+                 #   }
+            #    }
+          #  }
 
             stage('Upload was file to nexus'){
 

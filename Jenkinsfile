@@ -57,11 +57,25 @@ pipeline{
                    }
                     
                 }
-        }
-          
-            stage('Upload was file to nexus'){
+            
+             stage('Quality Gate Status'){
+                
+                steps{
+                    
+                    script{
+                        
+                        waitForQualityGate abortPipeline: false, credentialsId: 'sonar-api'
+                   }
+                }
+           }
+           
+            stage('Upload war file to nexus'){
 
                 steps{
+
+                    script{
+                        def readPomVersion = readMavenPom file: 'pom.xml'
+                    
 
                 nexusArtifactUploader artifacts: 
                 [
@@ -77,9 +91,11 @@ pipeline{
                     nexusVersion: 'nexus3', 
                     protocol: 'http', 
                     repository: 'demoapp-release', 
-                    version: '1.0.0'
+                    version: "${readPomVersion}"
+                    }
             }
             }
+        }
         }
         
 }
